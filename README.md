@@ -2,6 +2,7 @@ React Bootstrap run on Node.js example.
 ==========
     
 [![Build Status][travis-image]][travis-url]
+[![Coverage Status][coveralls-image][coveralls-url]
 [![Dependencies][dependecies-image]][dependecies-url]
 [![Dev Dependencies][dependecies-dev-image]][dependecies-dev-url]
 
@@ -103,6 +104,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 [travis-image]:https://img.shields.io/travis/marcindabrowski/node-react-bootstrap-example.svg?style=plastic
 [travis-url]:https://travis-ci.org/marcindabrowski/node-react-bootstrap-example
+
+[coveralls-image]:https://coveralls.io/repos/github/marcindabrowski/node-react-bootstrap-example/badge.svg?branch=master
+[coveralls-url]:https://coveralls.io/github/marcindabrowski/node-react-bootstrap-example?branch=master
 
 [dependecies-image]:https://img.shields.io/david/marcindabrowski/node-react-bootstrap-example.svg?style=plastic
 [dependecies-url]:https://david-dm.org/marcindabrowski/node-react-bootstrap-example

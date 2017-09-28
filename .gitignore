@@ -5,4 +5,5 @@ build/
 dist/
 node_modules/
 loki.json
+node-react-bootstrap-example.iml
 *.log

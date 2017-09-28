@@ -15,3 +15,5 @@ before_script:
     - yarn install
 script:
     - yarn release
+after_success:
+    - yarn coverage
