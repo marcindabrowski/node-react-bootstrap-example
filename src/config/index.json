@@ -1,0 +1,5 @@
+{
+  "jwtSecret": "a secret phrase!!",
+  "defaultUserEmail": "demo@example.com",
+  "defaultPassword": "12345678"
+}

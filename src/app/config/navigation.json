@@ -1,0 +1,52 @@
+{
+  "brand"       : "Insurance Claims Dashboard",
+  "leftLinks"   : [],
+  "rightLinks"  : [
+    {
+      "label" : "Home",
+      "link"  : "/",
+      "forUnauthenticatedUsers": true,
+      "forAuthenticatedUsers": true
+    },
+    {
+      "label":      "Register Claim",
+      "link":       "/registerClaim",
+      "view":       "registerClaim",
+      "isRouteBtn": true,
+      "forUnauthenticatedUsers": true,
+      "forAuthenticatedUsers": true
+    },
+    {
+      "label":      "Manage Claims",
+      "link":       "/manageClaims",
+      "view":       "manageClaims",
+      "isRouteBtn": true,
+      "forUnauthenticatedUsers": false,
+      "forAuthenticatedUsers": true
+    },
+    {
+      "label":      "About",
+      "link":       "/about",
+      "view":       "about",
+      "isRouteBtn": true,
+      "forUnauthenticatedUsers": true,
+      "forAuthenticatedUsers": true
+    },
+    {
+      "label":      "Login",
+      "link":       "/login",
+      "view":       "login",
+      "isRouteBtn": true,
+      "forUnauthenticatedUsers": true,
+      "forAuthenticatedUsers": false
+    },
+    {
+      "label":      "Logout",
+      "link":       "/logout",
+      "view":       "logout",
+      "isRouteBtn": true,
+      "forUnauthenticatedUsers": false,
+      "forAuthenticatedUsers": true
+    }
+  ]
+}

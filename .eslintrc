@@ -1,0 +1,22 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "mocha": true,
+    "jest": true
+  },
+
+  "plugins": [
+    "compat",
+    "mocha"
+  ],
+  "rules": {
+    "no-unexpected-multiline": 2,
+    "compat/compat": "error"
+  }
+}

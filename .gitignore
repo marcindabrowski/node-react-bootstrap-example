@@ -1,0 +1,8 @@
+/.idea
+/.nyc_output
+coverage/
+build/
+dist/
+node_modules/
+loki.json
+*.log
