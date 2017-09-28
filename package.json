@@ -41,7 +41,8 @@
     "serve:nodemon": "nodemon ./src/server/index.js",
     "serve:node": "node ./src/server/index.js",
     "serve-dev": "run-s dev serve:nodemon",
-    "serve-prod": "run-s prod serve:node"
+    "serve-prod": "run-s prod serve:node",
+    "release": "run-s test prod"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

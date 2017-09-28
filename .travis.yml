@@ -13,3 +13,5 @@ before_install:
     - sleep 3 # give xvfb some time to start
 before_script:
     - yarn install
+script:
+    - yarn release
