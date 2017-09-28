@@ -105,7 +105,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 [travis-image]:https://img.shields.io/travis/marcindabrowski/node-react-bootstrap-example.svg?style=plastic
 [travis-url]:https://travis-ci.org/marcindabrowski/node-react-bootstrap-example
 
-[coveralls-image]:https://coveralls.io/repos/github/marcindabrowski/node-react-bootstrap-example/badge.svg?branch=master
+[coveralls-image]:https://img.shields.io/coveralls/marcindabrowski/node-react-bootstrap-example/master.svg?style=plastic
 [coveralls-url]:https://coveralls.io/github/marcindabrowski/node-react-bootstrap-example?branch=master
 
 [dependecies-image]:https://img.shields.io/david/marcindabrowski/node-react-bootstrap-example.svg?style=plastic
