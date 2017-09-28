@@ -115,4 +115,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 [dependecies-dev-url]:https://david-dm.org/marcindabrowski/node-react-bootstrap-example?type=dev
 
 [license-image]:https://img.shields.io/github/license/mashape/apistatus.svg?style=plastic
-[license-url]:LICENSE.txt
+[license-url]:LICENSE
