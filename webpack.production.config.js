@@ -58,11 +58,11 @@ const config = {
     vendor: [
       'react',
       'react-dom',
-      'react-tap-event-plugin',
       'react-hot-loader',
       'babel-polyfill',
       'jquery',
       'bootstrap/dist/js/bootstrap.min.js',
+      'react-bootstrap-table/dist/react-bootstrap-table.min.js',
       'react-router',
       'classnames',
       'axios',

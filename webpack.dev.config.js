@@ -35,7 +35,6 @@ const config = {
     vendor: [
       'react',
       'react-dom',
-      'react-tap-event-plugin',
       'react-hot-loader',
       'babel-polyfill',
       'jquery',

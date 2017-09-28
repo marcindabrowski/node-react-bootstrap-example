@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import injectTpEventPlugin from 'react-tap-event-plugin';
 import { AppContainer } from 'react-hot-loader';
 
 import 'babel-polyfill';
@@ -18,8 +17,6 @@ import Root from './Root';
 
 const ELEMENT_TO_BOOTSTRAP = 'root';
 const BootstrapedElement = document.getElementById(ELEMENT_TO_BOOTSTRAP);
-
-injectTpEventPlugin();
 
 const renderApp = (RootComponent) => {
   render(
