@@ -2,7 +2,7 @@ React Bootstrap run on Node.js example.
 ==========
     
 [![Build Status][travis-image]][travis-url]
-[![Coverage Status][coveralls-image][coveralls-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
 [![Dependencies][dependecies-image]][dependecies-url]
 [![Dev Dependencies][dependecies-dev-image]][dependecies-dev-url]
 
