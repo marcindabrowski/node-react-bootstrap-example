@@ -11,6 +11,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 global.window = new JSDOM('').window;
 global.document = global.window.document;
+global.HTMLElement = global.window.HTMLElement;
 
 global.navigator = {
   userAgent: 'node.js',

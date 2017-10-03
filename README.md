@@ -3,8 +3,8 @@ React Bootstrap run on Node.js example.
     
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
-[![Dependencies][dependecies-image]][dependecies-url]
-[![Dev Dependencies][dependecies-dev-image]][dependecies-dev-url]
+[![Dependencies][dependencies-image]][dependencies-url]
+[![Dev Dependencies][dependencies-dev-image]][dependencies-dev-url]
 
 [![MIT License][license-image]][license-url]
 
@@ -108,11 +108,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 [coveralls-image]:https://img.shields.io/coveralls/marcindabrowski/node-react-bootstrap-example/master.svg?style=plastic
 [coveralls-url]:https://coveralls.io/github/marcindabrowski/node-react-bootstrap-example?branch=master
 
-[dependecies-image]:https://img.shields.io/david/marcindabrowski/node-react-bootstrap-example.svg?style=plastic
-[dependecies-url]:https://david-dm.org/marcindabrowski/node-react-bootstrap-example
+[dependencies-image]:https://img.shields.io/david/marcindabrowski/node-react-bootstrap-example.svg?style=plastic
+[dependencies-url]:https://david-dm.org/marcindabrowski/node-react-bootstrap-example
 
-[dependecies-dev-image]:https://img.shields.io/david/dev/marcindabrowski/node-react-bootstrap-example.svg?style=plastic
-[dependecies-dev-url]:https://david-dm.org/marcindabrowski/node-react-bootstrap-example?type=dev
+[dependencies-dev-image]:https://img.shields.io/david/dev/marcindabrowski/node-react-bootstrap-example.svg?style=plastic
+[dependencies-dev-url]:https://david-dm.org/marcindabrowski/node-react-bootstrap-example?type=dev
 
 [license-image]:https://img.shields.io/github/license/mashape/apistatus.svg?style=plastic
 [license-url]:LICENSE

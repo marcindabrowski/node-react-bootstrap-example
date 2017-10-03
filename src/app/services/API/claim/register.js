@@ -1,23 +1,19 @@
 import axios from 'axios';
 import validator from 'validator';
 import moment from 'moment';
-import {
-  postMethod,
-  jsonHeader,
-  defaultOptions,
-  getLocationOrigin,
-} from '../../fetchTools';
+import { postMethod, jsonHeader, defaultOptions, getLocationOrigin } from '../../fetchTools';
 import claimApi from '../../../../server/api/claimApi';
 import restApiUrls from '../../../../server/api/restApiUrls';
 
 export const claimDateFormat = 'YYYY-MM-DD';
+export const claimTypes = ['Lost Baggage', 'Theft', 'Missed Flight', 'Illness', 'Accident'];
 
 function isNullOrEmpty(value) {
   return value === undefined || value === null || value.length === 0;
 }
 
 function getDateValidationText(value) {
-  const date = moment(value, claimDateFormat);
+  const date = moment(value, claimDateFormat, true);
   if (!date.isValid()) {
     return `Provide valid date with format '${claimDateFormat}'.`;
   }
@@ -42,6 +38,9 @@ function validateField(fieldName, value) {
     case 'policyId':
       break;
     case 'type':
+      if (claimTypes.indexOf(value) < 0) {
+        return 'Provide valid type.';
+      }
       break;
     case 'amount':
       if (!validator.isNumeric(value)) {
@@ -66,22 +65,21 @@ export const isClaimFieldValid = (fieldName, value, validationResults) => {
   return fieldValid;
 };
 
-export const registerClaim = (
-  claim,
-) => {
+export const registerClaim = (claim) => {
   const method = postMethod.method;
   const headers = jsonHeader;
   const url = `${getLocationOrigin()}${claimApi.url}${restApiUrls.createUrl()}`;
   const options = { ...defaultOptions };
 
-  return axios.request({
-    method,
-    url,
-    withCredentials: true,
-    ...headers,
-    ...options,
-    data: claim,
-  })
+  return axios
+    .request({
+      method,
+      url,
+      withCredentials: true,
+      ...headers,
+      ...options,
+      data: claim,
+    })
     .then(data => data)
     .catch(error => Promise.reject(error));
 };

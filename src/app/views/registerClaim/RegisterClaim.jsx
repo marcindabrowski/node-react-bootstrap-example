@@ -1,11 +1,25 @@
-import React, {
-  PureComponent,
-} from 'react';
-import { Form, FormGroup, FormControl, Col, ControlLabel, Button, InputGroup, HelpBlock, Glyphicon, Modal } from 'react-bootstrap';
+import React, { PureComponent } from 'react';
+import {
+  Form,
+  FormGroup,
+  FormControl,
+  Col,
+  ControlLabel,
+  Button,
+  InputGroup,
+  HelpBlock,
+  Glyphicon,
+} from 'react-bootstrap';
 import Datetime from 'react-datetime';
 import jQuery from 'jquery';
 import moment from 'moment';
-import { claimDateFormat, isClaimFieldValid, validateClaim, registerClaim } from '../../services/index';
+import {
+  claimDateFormat,
+  claimTypes,
+  isClaimFieldValid,
+  validateClaim,
+  registerClaim,
+} from '../../services/index';
 
 class RegisterClaim extends PureComponent {
   static getEmptyClaim() {
@@ -13,10 +27,22 @@ class RegisterClaim extends PureComponent {
       name: '',
       email: '',
       policyId: '',
-      type: 'Lost Baggage',
+      type: claimTypes[0],
       amount: '',
       date: '',
     };
+  }
+
+  static renderClaimTypes() {
+    const claimTypesOptions = [];
+    claimTypes.forEach((value) => {
+      claimTypesOptions.push(
+        <option key={value} value={value}>
+          {value}
+        </option>,
+      );
+    });
+    return claimTypesOptions;
   }
 
   constructor(props) {
@@ -30,15 +56,49 @@ class RegisterClaim extends PureComponent {
     this.handleChange = this.handleChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.register = this.register.bind(this);
+    this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
-  closeModal() {
-    this.setState({ showModal: false });
+  getModal() {
+    if (this.state.showModal) {
+      return (
+        <div id="registerClaimModal" className="modal show" role="dialog">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <button type="button" className="close" data-dismiss="modal" onClick={this.closeModal}>
+                  &times;
+                </button>
+                <h4 className="modal-title">Registration info</h4>
+              </div>
+              <div className="modal-body">
+                <p>{this.state.registrationInfo}</p>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-default"
+                  data-dismiss="modal"
+                  onClick={this.closeModal}
+                >
+                  OK
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return null;
   }
 
   openModal(info, claim, validationResults) {
     this.setState({ showModal: true, registrationInfo: info, claim, validationResults });
+  }
+
+  closeModal() {
+    this.setState({ showModal: false });
   }
 
   handleChange(e) {
@@ -59,8 +119,10 @@ class RegisterClaim extends PureComponent {
 
     isClaimFieldValid(fieldName, value, fieldValidationResults);
     claim[fieldName] = value;
-    validationResults[`${fieldName}ValidationStatus`] = fieldValidationResults[`${fieldName}ValidationStatus`];
-    validationResults[`${fieldName}ValidationText`] = fieldValidationResults[`${fieldName}ValidationText`];
+    validationResults[`${fieldName}ValidationStatus`] =
+      fieldValidationResults[`${fieldName}ValidationStatus`];
+    validationResults[`${fieldName}ValidationText`] =
+      fieldValidationResults[`${fieldName}ValidationText`];
 
     this.setState({
       claim,
@@ -86,26 +148,25 @@ class RegisterClaim extends PureComponent {
     claim.amount = Number(claim.amount);
     registerClaim(claim)
       .then(() => this.openModal('Claim has been registered.', RegisterClaim.getEmptyClaim(), {}))
-      .catch(error => this.openModal(`Claim hasn't been registered.
-        ${error}`, claim, {}));
+      .catch(error =>
+        this.openModal(
+          `Claim hasn't been registered.
+        ${error}`,
+          claim,
+          {},
+        ),
+      );
   }
 
   render() {
     return (
       <div>
-        <Modal show={this.state.showModal} onHide={this.closeModal}>
-          <Modal.Header closeButton>
-            <Modal.Title>Registration info</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>{this.state.registrationInfo}</p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.closeModal}>OK</Button>
-          </Modal.Footer>
-        </Modal>
+        {this.getModal()}
         <Form horizontal>
-          <FormGroup controlId="formHorizontalName" validationState={this.state.validationResults.nameValidationStatus}>
+          <FormGroup
+            controlId="formHorizontalName"
+            validationState={this.state.validationResults.nameValidationStatus}
+          >
             <Col componentClass={ControlLabel} sm={2}>
               Name
             </Col>
@@ -122,7 +183,10 @@ class RegisterClaim extends PureComponent {
             </Col>
           </FormGroup>
 
-          <FormGroup controlId="formHorizontalEmail" validationState={this.state.validationResults.emailValidationStatus}>
+          <FormGroup
+            controlId="formHorizontalEmail"
+            validationState={this.state.validationResults.emailValidationStatus}
+          >
             <Col componentClass={ControlLabel} sm={2}>
               Email
             </Col>
@@ -142,7 +206,10 @@ class RegisterClaim extends PureComponent {
             </Col>
           </FormGroup>
 
-          <FormGroup controlId="formHorizontalPolicyID" validationState={this.state.validationResults.policyIdValidationStatus}>
+          <FormGroup
+            controlId="formHorizontalPolicyID"
+            validationState={this.state.validationResults.policyIdValidationStatus}
+          >
             <Col componentClass={ControlLabel} sm={2}>
               Policy ID
             </Col>
@@ -159,7 +226,10 @@ class RegisterClaim extends PureComponent {
             </Col>
           </FormGroup>
 
-          <FormGroup controlId="formHorizontalClaimType" validationState={this.state.validationResults.typeValidationStatus}>
+          <FormGroup
+            controlId="formHorizontalClaimType"
+            validationState={this.state.validationResults.typeValidationStatus}
+          >
             <Col componentClass={ControlLabel} sm={2}>
               Claim Type
             </Col>
@@ -171,18 +241,17 @@ class RegisterClaim extends PureComponent {
                 onChange={this.handleChange}
                 value={this.state.claim.type}
               >
-                <option value="Lost Baggage">Lost Baggage</option>
-                <option value="Theft">Theft</option>
-                <option value="Missed Flight">Missed Flight</option>
-                <option value="Illness">Illness</option>
-                <option value="Accident">Accident</option>
+                {RegisterClaim.renderClaimTypes()}
               </FormControl>
               <FormControl.Feedback />
               <HelpBlock>{this.state.validationResults.typeValidationText}</HelpBlock>
             </Col>
           </FormGroup>
 
-          <FormGroup controlId="formHorizontalAmount" validationState={this.state.validationResults.amountValidationStatus}>
+          <FormGroup
+            controlId="formHorizontalAmount"
+            validationState={this.state.validationResults.amountValidationStatus}
+          >
             <Col componentClass={ControlLabel} sm={2}>
               Claim Amount
             </Col>
@@ -202,13 +271,18 @@ class RegisterClaim extends PureComponent {
             </Col>
           </FormGroup>
 
-          <FormGroup controlId="formHorizontalDate" validationState={this.state.validationResults.dateValidationStatus}>
+          <FormGroup
+            controlId="formHorizontalDate"
+            validationState={this.state.validationResults.dateValidationStatus}
+          >
             <Col componentClass={ControlLabel} sm={2}>
               Date Occurred
             </Col>
             <Col sm={10}>
               <InputGroup>
-                <InputGroup.Addon><Glyphicon glyph="calendar" /></InputGroup.Addon>
+                <InputGroup.Addon>
+                  <Glyphicon glyph="calendar" />
+                </InputGroup.Addon>
                 <Datetime
                   inputProps={{
                     placeholder: 'Date Occurred',
