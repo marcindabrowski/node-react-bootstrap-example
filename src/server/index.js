@@ -5,7 +5,7 @@ const initServer = require('./initServer');
 
 const app = express();
 const DOCS_PATH = '../../docs/';
-const PORT = 8082;
+const PORT = process.env.PORT || 8082;
 const IP_ADRESS = 'localhost';
 
 app.set('port', PORT);
