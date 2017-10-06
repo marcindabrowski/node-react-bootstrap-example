@@ -1,30 +1,41 @@
+const chalk = require('chalk');
 const express = require('express');
 const path = require('path');
-const chalk = require('chalk');
+const throng = require('throng');
 const initServer = require('./initServer');
 
-const app = express();
 const DOCS_PATH = '../../docs/';
 const PORT = process.env.PORT || 8082;
 const IP_ADDRESS = '0.0.0.0';
+const WORKERS = process.env.WEB_CONCURRENCY || 1;
 
-app.set('port', PORT);
-app.set('ipAddress', IP_ADDRESS);
+function startServer(workerId) {
+  const app = express();
 
-app.use(express.static(path.join(__dirname, DOCS_PATH)));
+  app.set('port', PORT);
+  app.set('ipAddress', IP_ADDRESS);
 
-initServer(app);
+  app.use(express.static(path.join(__dirname, DOCS_PATH)));
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, DOCS_PATH, 'index.html')));
+  initServer(app);
 
-/* eslint-disable no-console */
-app.listen(PORT, IP_ADDRESS, () =>
-  console.log(`
+  app.get('/', (req, res) => res.sendFile(path.join(__dirname, DOCS_PATH, 'index.html')));
+
+  /* eslint-disable no-console */
+  app.listen(PORT, IP_ADDRESS, () =>
+    console.log(`
     =====================================================
-    -> Server (${chalk.bgBlue('SPA')}) 🏃 (running) on ${chalk.green(IP_ADDRESS)}:${chalk.green(
+    -> Worker ${workerId} started server (${chalk.bgBlue('SPA')}) 🏃 (running) on ${chalk.green(IP_ADDRESS)}:${chalk.green(
   PORT,
 )}
     =====================================================
   `),
-);
-/* eslint-enable no-console */
+  );
+  /* eslint-enable no-console */
+}
+
+throng({
+  workers: WORKERS,
+  lifetime: Infinity,
+  start: startServer,
+});
